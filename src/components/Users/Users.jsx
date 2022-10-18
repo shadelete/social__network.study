@@ -1,33 +1,27 @@
 import React from "react";
 
 let Users = (props) => {
-    debugger
-    let pagesCount = Math.ceil(props.state.totalUsers / props.state.pageSize);
+    let pagesCount = Math.ceil(props.totalUsers / props.pageSize);
 
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
 
-    let cr = props.state.currentPage
-
+    let cr = props.currentPage
     let p_cr = cr + 2
     let m_cr = cr - 3
     let slice_cr = cr > 2 ? pages.slice(m_cr, p_cr) : pages.slice(0, 5)
     return (
         <div>
             <div>
-
                 {slice_cr.map(el => {
-                    return <span className={props.state.currentPage === el && "select"} onClick={() => {
-                        props.state.changePage(el)
-                    }
-                    }>{el}</span>
+                    return <span className={props.currentPage === el && "select"} onClick={() => {
+                        props.changePage(el) }}>{el}</span>
                 })}
-                {/*<span>   of {pagesCount}</span>*/}
             </div>
             {
-                props.state.users.map(el =>
+                props.users.map(el =>
                     <div key={el.id} className="user-content">
                         <div className="user-photo">
                             <img src={el.photos}/>
@@ -45,8 +39,8 @@ let Users = (props) => {
                         </div>
                         <div>
                             {el.followed
-                                ? <button onClick={() => props.state.unfollow(el.id)}>Unfollow</button>
-                                : <button onClick={() => props.state.follow(el.id)}>Follow</button>
+                                ? <button onClick={() => props.unfollow(el.id)}>Unfollow</button>
+                                : <button onClick={() => props.follow(el.id)}>Follow</button>
                             }
                         </div>
                     </div>
