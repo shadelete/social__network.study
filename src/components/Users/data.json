@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": 1 ,
+      "followed": true ,
+      "photo": "https://thumbs.dreamstime.com/b/face-portrait-very-happy-man-against-aqua-marine-blue-face-portrait-very-happy-man-against-aqua-marine-blue-color-background-204349508.jpg" ,
+      "name": "Yoora" ,
+      "status": "hello dolboeb" ,
+      "location": {
+        "country": "Ukraine" ,
+        "city": "Kiev"
+      }
+    } ,
+    {
+      "id": 2 ,
+      "followed": true ,
+      "photo": "https://thumbs.dreamstime.com/b/face-portrait-very-happy-man-against-aqua-marine-blue-face-portrait-very-happy-man-against-aqua-marine-blue-color-background-204349508.jpg" ,
+      "name": "Sasha" ,
+      "status": "hello dolboeb" ,
+      "location": {
+        "country": "Ukraine" ,
+        "city": "Mariupol"
+      }
+    }
+  ]
+}

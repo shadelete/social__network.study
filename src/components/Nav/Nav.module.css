@@ -1,0 +1,28 @@
+.nav {
+    background-color: #fff;
+    grid-area: n;
+    box-shadow: 0px 1px 2px #cbcbcb;
+    border-radius: 2px;
+    padding: 25px 25px;
+}
+
+.nav__item p {
+    text-align: center;
+}
+
+a {
+    color: black;
+}
+
+.active {
+    color:brown;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav__friends {
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+}

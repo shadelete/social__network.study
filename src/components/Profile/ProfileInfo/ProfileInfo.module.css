@@ -1,0 +1,11 @@
+.content {
+    grid-area: c;
+}
+
+.item {
+    color: white;
+}
+
+.description__block {
+    padding: 10px;
+}

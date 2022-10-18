@@ -1,0 +1,8 @@
+.nav {
+    background-color: blueviolet;
+}
+
+.friends__wrapper img {
+    max-width: 50px;
+    border-radius: 25px;
+}
