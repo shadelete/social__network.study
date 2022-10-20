@@ -2,6 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import {usersAPI} from "../../api/api";
+import {setFollowingInProgress} from "../../redux/users-reducer";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsers / props.pageSize);
@@ -49,19 +50,23 @@ let Users = (props) => {
                         <div>
                             {el.followed
                                 ?
-                                <button onClick={()=>{
+                                <button id={el.id} disabled={props.followingInProgress.some(id => id===el.id)} onClick={()=>{
+                                    props.setFollowingInProgress(true,el.id)
                                     usersAPI.unFollow(el.id).then(res => {
                                             if(res.resultCode === 0){
                                                 props.unfollow(el.id)
                                             }
+                                        props.setFollowingInProgress(false,el.id)
                                     })
                                 }}>Unfollow</button>
                                 :
-                                <button onClick={()=>{
+                                <button disabled={props.followingInProgress.some(id => id===el.id)} onClick={()=>{
+                                    props.setFollowingInProgress(true,el.id)
                                     usersAPI.follow(el.id,{}).then(res => {
                                             if(res.resultCode === 0){
                                                 props.follow(el.id)
                                             }
+                                            props.setFollowingInProgress(false,el.id)
                                         })
                                 }}>Follow</button>
                             }
