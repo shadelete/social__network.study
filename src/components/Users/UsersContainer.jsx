@@ -11,28 +11,28 @@ import {
 import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {usersAPI} from "../../api/api";
 
 class UsersContainer extends React.Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        this.setUsers()
-    }
-    setUsers = () => {
-        this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-            withCredentials: true
-        }).then(res => {
-            this.props.setUsers(res.data.items);
+        this.props.setIsFetching(true)
+        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(res => {
+            this.props.setUsers(res.items);
             this.props.setIsFetching(false);
-            this.totalPageCount(res.data.totalCount);
-            this.props.setTotalCount(res.data.totalCount);
+            this.totalPageCount(res.totalCount);
+            this.props.setTotalCount(res.totalCount);
         });
     }
     changePage = (p) => {
         this.props.setCurrentPage(p)
-        this.setUsers()
+        this.props.setIsFetching(true)
+        usersAPI.getUsers(p,this.props.pageSize).then(res => {
+            this.props.setUsers(res.items);
+            this.props.setIsFetching(false);
+        });
 
     }
     totalPageCount = (p) => {

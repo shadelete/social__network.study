@@ -8,6 +8,7 @@ import {
     useNavigate,
     useParams,
 } from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -31,8 +32,8 @@ class ProfileContainer extends React.Component{
         if(!userId){
             userId = 2;
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(res => {
-            this.props.setUserProfile(res.data)
+        usersAPI.getProfile(userId).then(res => {
+            this.props.setUserProfile(res)
         });
     }
 
