@@ -21,7 +21,9 @@ class UsersContainer extends React.Component {
     }
     setUsers = () => {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(res => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+            withCredentials: true
+        }).then(res => {
             this.props.setUsers(res.data.items);
             this.props.setIsFetching(false);
             this.totalPageCount(res.data.totalCount);

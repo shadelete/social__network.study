@@ -11,7 +11,7 @@ import s from'./ProfileInfo.module.css'
             <div className="info">
                 <p>{props.profile.fullName}</p>
                 <p>{props.profile.aboutMe}</p>
-                <p>{ props.profile.lookingForAJob ? 'Ищу работу' : 'Уже работаю' }</p>
+                <p>{ props.profile.lookingForAJob ? 'Уже работаю' : 'Ищу работу' }</p>
             </div>
         </div>
       </div>  
