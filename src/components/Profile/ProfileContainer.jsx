@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import {usersAPI} from "../../api/api";
 import {Redirect} from "../Hoc/Redirect";
+import {compose} from "redux";
 
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -46,10 +47,13 @@ class ProfileContainer extends React.Component{
   }
 };
 
+
+
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profileData
 })
 
-let userIdDataComponent = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, {setUserProfile,getProfileThunk})(Redirect(userIdDataComponent));
+export default compose(
+    connect(mapStateToProps, {setUserProfile,getProfileThunk}),
+    Redirect
+)(withRouter(ProfileContainer))

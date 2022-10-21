@@ -7,6 +7,7 @@ import { addMessageActionCreator, updateNewMessageActionCreator} from "../../red
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {Redirect} from "../Hoc/Redirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
   return {
@@ -26,6 +27,7 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-const DialogsContainer = connect( mapStateToProps, mapDispatchToProps )(Redirect(Dialogs))
-
-export default DialogsContainer;
+export default compose(
+    connect( mapStateToProps, mapDispatchToProps ),
+    Redirect
+)(Dialogs);
