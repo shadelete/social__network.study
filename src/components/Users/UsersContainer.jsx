@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getUsersThunkCreator, followThunk, unfollowThunk} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {Navigate} from "react-router-dom";
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -15,6 +16,10 @@ class UsersContainer extends React.Component {
         this.props.getUsersThunkCreator(p,this.props.pageSize)
     }
     render() {
+        if(!this.props.isAuth){
+            return <Navigate to={"/login"}/>
+        }
+
         return <>
             { this.props.isFetching ? <Preloader/> : null }
         <Users
@@ -39,7 +44,8 @@ let mapStateToProps = (state) => {
         totalUsers: state.usersPage.totalUsers,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 }
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {getProfileThunk, setUserProfile} from "../../redux/profile-reducer";
 import {
+    Navigate,
     useLocation,
     useNavigate,
     useParams,
@@ -36,16 +37,20 @@ class ProfileContainer extends React.Component{
     }
 
     render() {
-      return (
-          <div>
-              <Profile {...this.props} profile={this.props.profile}/>
-          </div>
-      )
+        if(!this.props.isAuth){
+            return <Navigate to={"/login"}/>
+        }
+        return (
+            <div>
+                <Profile {...this.props} profile={this.props.profile}/>
+            </div>
+        )
   }
 };
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profileData
+    profile: state.profilePage.profileData,
+    isAuth: state.auth.isAuth
 })
 
 let userIdDataComponent = withRouter(ProfileContainer)
