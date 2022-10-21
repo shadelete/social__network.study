@@ -10,6 +10,7 @@ import {
     useParams,
 } from "react-router-dom";
 import {usersAPI} from "../../api/api";
+import {Redirect} from "../Hoc/Redirect";
 
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
@@ -37,9 +38,6 @@ class ProfileContainer extends React.Component{
     }
 
     render() {
-        if(!this.props.isAuth){
-            return <Navigate to={"/login"}/>
-        }
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile}/>
@@ -49,10 +47,9 @@ class ProfileContainer extends React.Component{
 };
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profileData,
-    isAuth: state.auth.isAuth
+    profile: state.profilePage.profileData
 })
 
 let userIdDataComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfile,getProfileThunk})(userIdDataComponent);
+export default connect(mapStateToProps, {setUserProfile,getProfileThunk})(Redirect(userIdDataComponent));

@@ -5,6 +5,8 @@ import React from "react";
 import Dialogs from "./Dialogs";
 import { addMessageActionCreator, updateNewMessageActionCreator} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
+import {Navigate} from "react-router-dom";
+import {Redirect} from "../Hoc/Redirect";
 
 let mapStateToProps = (state) => {
   return {
@@ -24,6 +26,6 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-const DialogsContainer = connect( mapStateToProps, mapDispatchToProps )(Dialogs)
+const DialogsContainer = connect( mapStateToProps, mapDispatchToProps )(Redirect(Dialogs))
 
 export default DialogsContainer;
