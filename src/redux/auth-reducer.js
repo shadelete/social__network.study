@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const SET_USER_DATA = 'FOLLOW';
 
 let initialState = {
@@ -31,6 +33,17 @@ export const setUserData = (userId, email, login) => ({
         login: login
     }
 })
+
+export const authMeThunk = () => {
+    return (dispatch) => {
+        usersAPI.authMe().then(res => {
+            if(res.resultCode === 0) {
+                let {id,email,login} = res.data;
+                dispatch(setUserData(id,email,login))
+            }
+        });
+    }
+}
 
 
 export default authReducer;
