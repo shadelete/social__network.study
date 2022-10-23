@@ -1,0 +1,54 @@
+{
+  "games": {
+    "popular": [
+      {
+        "id": 1,
+        "name": "Dota 2",
+        "genre": "Strategy",
+        "releaseDate": 2011,
+        "price": 5,
+        "rating": 2.8,
+        "totalDownloads": 456221,
+        "developer": "Gaben",
+        "tags": ["Free to Play","Moba"],
+        "imageUrl": "https://i.ytimg.com/vi/aik0s0WR_7c/maxresdefault.jpg"
+      },
+      {
+        "id": 2,
+        "name": "PUBG: BATTLEGROUNDS",
+        "genre": "Shooter",
+        "releaseDate": 2017,
+        "price": 5,
+        "rating": 2.8,
+        "totalDownloads": 456221,
+        "developer": "KRAFTON, Inc.",
+        "tags": ["Free to Play","Multiplayer"],
+        "imageUrl": "https://assets.xboxservices.com/assets/39/09/3909c985-d854-4681-854d-2f89562086f1.jpg?n=PUBG_GLP-Page-Hero-1084_1920x1080_02.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Rust",
+        "genre": "Shooter",
+        "releaseDate": 2017,
+        "price": 5,
+        "rating": 2.8,
+        "totalDownloads": 456221,
+        "developer": "KRAFTON, Inc.",
+        "tags": ["Free to Play","Multiplayer"],
+        "imageUrl": "https://whatifgaming.com/wp-content/uploads/2022/03/image-21.png"
+      },
+      {
+        "id": 4,
+        "name": "Apex",
+        "genre": "Shooter",
+        "releaseDate": 2017,
+        "price": 5,
+        "rating": 2.8,
+        "totalDownloads": 456221,
+        "developer": "KRAFTON, Inc.",
+        "tags": ["Free to Play","Multiplayer"],
+        "imageUrl": "https://cdn.mos.cms.futurecdn.net/Esch6DPTjSjiDLZL7qvMSW.jpg"
+      }
+    ]
+  }
+}

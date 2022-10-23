@@ -1,4 +1,5 @@
 import s from'./ProfileInfo.module.css'
+import ProfileStatus from "./ProfileStatus";
 
  const ProfileInfo = (props) => {
     return (
@@ -8,6 +9,7 @@ import s from'./ProfileInfo.module.css'
         </div>
         <div className={s.description__block}>
             <img src={props.profile.photos.small} alt=""/>
+            <ProfileStatus text="hello"/>
             <div className="info">
                 <p>{props.profile.fullName}</p>
                 <p>{props.profile.aboutMe}</p>
