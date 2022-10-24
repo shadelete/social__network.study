@@ -2,7 +2,12 @@ import React from "react";
 import Profile from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {getProfileThunk, setUserProfile} from "../../redux/profile-reducer";
+import {
+    getProfileStatus,
+    getProfileThunk,
+    putProfileStatus,
+    setUserProfile,
+} from "../../redux/profile-reducer";
 import {
     Navigate,
     useLocation,
@@ -36,24 +41,28 @@ class ProfileContainer extends React.Component{
             userId = 26324;
         }
         this.props.getProfileThunk(userId);
+        this.props.getProfileStatus(userId);
     }
 
     render() {
+        // debugger
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile}/>
             </div>
         )
-  }
+    }
 };
 
 
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profileData
+    profile: state.profilePage.profileData,
+    profileStatus: state.profilePage.profileStatus,
+    myId: state.auth.userId
 })
 
 export default compose(
-    connect(mapStateToProps, {setUserProfile,getProfileThunk}),
+    connect(mapStateToProps, {setUserProfile,getProfileThunk,getProfileStatus,putProfileStatus}),
     Redirect
 )(withRouter(ProfileContainer))

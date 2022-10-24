@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
 
 class ProfileStatus extends Component {
-    state = {
-        edit: false
+    constructor(props) {
+        super(props);
+        this.state = {currentValue: this.props.profileStatus ,edit: false}
+        // debugger
+    }
+    handleChange(event) {
+        this.setState({currentValue: event.target.value});
+    }
+    putStatus = (event) => {
+        this.setState({edit: false})
+        this.props.putProfileStatus(event.target.value)
     }
     EditMode = () => {
-        let mode = this.state.edit ? false : true
-        this.setState({
-            edit: mode
-        })
+        this.setState({edit: true, currentValue:this.props.profileStatus})
     }
     render() {
         return (
@@ -16,13 +22,20 @@ class ProfileStatus extends Component {
                 {
                     !this.state.edit &&
                     <div>
-                        <p onDoubleClick={this.EditMode.bind(this)}>{this.props.text}</p>
+                        <p onDoubleClick={
+                            this.props.myId === this.props.currentId ? this.EditMode.bind(this) : null
+                        }>{this.props.profileStatus}</p>
                     </div>
                 }
                 {
                     this.state.edit &&
                     <div>
-                        <input autoFocus={this.EditMode} onBlur={this.EditMode.bind(this)} value={this.props.text} type="text"/>
+                        <input
+                            autoFocus={true}
+                            onBlur={this.putStatus}
+                            value={this.state.currentValue}
+                            onChange={this.handleChange.bind(this)}
+                            type="text"/>
                     </div>
                 }
             </div>

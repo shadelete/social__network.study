@@ -1,5 +1,6 @@
 import s from'./ProfileInfo.module.css'
 import ProfileStatus from "./ProfileStatus";
+import {putProfileStatus, setUserStatus} from "../../../redux/profile-reducer";
 
  const ProfileInfo = (props) => {
     return (
@@ -9,10 +10,9 @@ import ProfileStatus from "./ProfileStatus";
         </div>
         <div className={s.description__block}>
             <img src={props.profile.photos.small} alt=""/>
-            <ProfileStatus text="hello"/>
+            <ProfileStatus currentId={props.currentId} myId={props.myId} putProfileStatus={props.putProfileStatus} profileStatus={props.profileStatus}/>
             <div className="info">
                 <p>{props.profile.fullName}</p>
-                <p>{props.profile.aboutMe}</p>
                 <p>{ props.profile.lookingForAJob ? 'Уже работаю' : 'Ищу работу' }</p>
             </div>
         </div>
