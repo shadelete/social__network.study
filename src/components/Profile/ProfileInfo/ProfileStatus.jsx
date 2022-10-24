@@ -14,7 +14,7 @@ class ProfileStatus extends Component {
         this.props.putProfileStatus(event.target.value)
     }
     EditMode = () => {
-        this.setState({edit: true, currentValue:this.props.profileStatus})
+        this.setState({edit: true})
     }
     render() {
         return (
@@ -24,7 +24,7 @@ class ProfileStatus extends Component {
                     <div>
                         <p onDoubleClick={
                             this.props.myId === this.props.currentId ? this.EditMode.bind(this) : null
-                        }>{this.props.profileStatus}</p>
+                        }>{this.props.profileStatus === '' ? "text here your status" : this.props.profileStatus}</p>
                     </div>
                 }
                 {
