@@ -42,6 +42,19 @@ export const profileAPI = {
     }
 }
 
+export const loginAPI = {
+    login(email,pass,rememberMe)  {
+        debugger
+        return instance.post(`auth/login`,{email: email,password: pass,rememberMe: rememberMe})
+            .then(response => response.data);
+    },
+    logout()  {
+        debugger
+        return instance.delete(`auth/login`)
+            .then(response => response.data);
+    },
+}
+
 
 
 // export const getProfile = (userId) => {

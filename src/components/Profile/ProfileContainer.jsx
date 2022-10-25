@@ -37,9 +37,9 @@ function withRouter(Component) {
 class ProfileContainer extends React.Component{
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        if(!userId){
-            userId = 26324;
-        }
+        // if(!userId){
+        //     userId = 26324;
+        // }
         this.props.getProfileThunk(userId);
         this.props.getProfileStatus(userId);
     }

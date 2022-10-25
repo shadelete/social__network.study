@@ -24,7 +24,7 @@ class ProfileStatus extends Component {
                     <div>
                         <p onDoubleClick={
                             this.props.myId === this.props.currentId ? this.EditMode.bind(this) : null
-                        }>{this.props.profileStatus === '' ? "text here your status" : this.props.profileStatus}</p>
+                        }>{this.props.profileStatus || "text here your status"}</p>
                     </div>
                 }
                 {

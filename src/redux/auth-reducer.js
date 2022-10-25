@@ -1,13 +1,14 @@
-import {usersAPI} from "../api/api";
+import {usersAPI,loginAPI} from "../api/api";
 
 const SET_USER_DATA = 'FOLLOW';
+const LOGIN = 'LOGIN';
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
     // isFetching: false,
-    isAuth: false
+    isAuth: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,11 +20,25 @@ const authReducer = (state = initialState, action) => {
                 isAuth: true
             }
         }
+        case LOGIN: {
+            return  {
+                ...state,
+                userId: action.userId,
+                isAuth: true
+            }
+        }
         default: {
             return state;
         }
     }
 }
+
+export const logIn = (userId) => ({
+    type: LOGIN,
+    data: {
+        userId: userId
+    }
+})
 
 export const setUserData = (userId, email, login) => ({
     type: SET_USER_DATA,
@@ -38,8 +53,35 @@ export const authMeThunk = () => {
     return (dispatch) => {
         usersAPI.authMe().then(res => {
             if(res.resultCode === 0) {
-                let {id,email,login} = res.data;
-                dispatch(setUserData(id,email,login))
+                let {userId, email, login} = res.data;
+                dispatch(setUserData(userId, email, login))
+            }
+        });
+    }
+}
+
+export const loginThunk = (email,pass,rememberMe) => {
+    return (dispatch) => {
+        loginAPI.login(email,pass,rememberMe).then(res => {
+            if(res.resultCode === 0) {
+                dispatch(logIn(res.data))
+                usersAPI.authMe().then(res => {
+                    if(res.resultCode === 0) {
+                        let {userId, email, login} = res.data;
+                        dispatch(setUserData(userId, email, login))
+                    }
+                });
+            }
+        });
+    }
+}
+
+export const logoutThunk = () => {
+    return (dispatch) => {
+        loginAPI.logout().then(res => {
+            debugger
+            if(res.resultCode === 0) {
+                dispatch(setUserData(null,null,null))
             }
         });
     }
